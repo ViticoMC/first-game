@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://ixmke6oempt6"]
+
+[ext_resource type="Texture2D" uid="uid://d2upx757rwpke" path="res://1 Buildings/Cartoon_Medieval_Field_Work_Level_Set_Platformer - Ground 02.png" id="1_qdjju"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xq07r"]
+size = Vector2(626, 53)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+position = Vector2(81, -4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-258, 27.5)
+shape = SubResource("RectangleShape2D_xq07r")
+
+[node name="CartoonMedievalFieldWorkLevelSetPlatformer-Ground02" type="Sprite2D" parent="."]
+position = Vector2(-536, 27)
+rotation = 3.14159
+scale = Vector2(0.546622, -0.416708)
+texture = ExtResource("1_qdjju")
+
+[node name="CartoonMedievalFieldWorkLevelSetPlatformer-Ground04" type="Sprite2D" parent="."]
+position = Vector2(-398, 27)
+rotation = 3.14159
+scale = Vector2(0.546622, -0.416708)
+texture = ExtResource("1_qdjju")
+
+[node name="CartoonMedievalFieldWorkLevelSetPlatformer-Ground03" type="Sprite2D" parent="."]
+position = Vector2(-467, 27)
+rotation = 3.14159
+scale = Vector2(0.546622, -0.416708)
+texture = ExtResource("1_qdjju")
+
+[node name="CartoonMedievalFieldWorkLevelSetPlatformer-Ground05" type="Sprite2D" parent="."]
+position = Vector2(-328, 27)
+rotation = 3.14159
+scale = Vector2(0.546622, -0.416708)
+texture = ExtResource("1_qdjju")
+
+[node name="CartoonMedievalFieldWorkLevelSetPlatformer-Ground06" type="Sprite2D" parent="."]
+position = Vector2(-258, 27)
+rotation = 3.14159
+scale = Vector2(0.546622, -0.416708)
+texture = ExtResource("1_qdjju")
+
+[node name="CartoonMedievalFieldWorkLevelSetPlatformer-Ground07" type="Sprite2D" parent="."]
+position = Vector2(-189, 27)
+rotation = 3.14159
+scale = Vector2(0.546622, -0.416708)
+texture = ExtResource("1_qdjju")
+
+[node name="CartoonMedievalFieldWorkLevelSetPlatformer-Ground08" type="Sprite2D" parent="."]
+position = Vector2(-119.016, 27)
+rotation = 3.14159
+scale = Vector2(0.546622, -0.416708)
+texture = ExtResource("1_qdjju")
+
+[node name="CartoonMedievalFieldWorkLevelSetPlatformer-Ground09" type="Sprite2D" parent="."]
+position = Vector2(18.9838, 27)
+rotation = 3.14159
+scale = Vector2(0.546622, -0.416708)
+texture = ExtResource("1_qdjju")
+
+[node name="CartoonMedievalFieldWorkLevelSetPlatformer-Ground10" type="Sprite2D" parent="."]
+position = Vector2(-50.0162, 27)
+rotation = 3.14159
+scale = Vector2(0.546622, -0.416708)
+texture = ExtResource("1_qdjju")

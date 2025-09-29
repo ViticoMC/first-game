@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgacj44arbanb"]
+
+[ext_resource type="Texture2D" uid="uid://bbyaxuvj37ixi" path="res://1 Buildings/Rotating_blades.png" id="1_cq5fq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwpl6"]
+atlas = ExtResource("1_cq5fq")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mnru"]
+atlas = ExtResource("1_cq5fq")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3oha"]
+atlas = ExtResource("1_cq5fq")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvc3m"]
+atlas = ExtResource("1_cq5fq")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a84nr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwpl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mnru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3oha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvc3m")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[node name="molinito" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_a84nr")
+animation = &"idle"
+frame_progress = 0.408576

@@ -1,0 +1,93 @@
+[gd_scene load_steps=12 format=3 uid="uid://0lr4r8iyhmew"]
+
+[ext_resource type="Texture2D" uid="uid://de7o0ile86mc1" path="res://1 Buildings/Cannon_restricted_size.png" id="1_hrr58"]
+[ext_resource type="Script" uid="uid://co7gpsx356dvu" path="res://canon.gd" id="1_knihn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b067o"]
+size = Vector2(33.5, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ylh5"]
+atlas = ExtResource("1_hrr58")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puutc"]
+atlas = ExtResource("1_hrr58")
+region = Rect2(224, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ourpp"]
+atlas = ExtResource("1_hrr58")
+region = Rect2(224, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c1sp"]
+atlas = ExtResource("1_hrr58")
+region = Rect2(224, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg8p8"]
+atlas = ExtResource("1_hrr58")
+region = Rect2(224, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4thu"]
+atlas = ExtResource("1_hrr58")
+region = Rect2(224, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knihn"]
+atlas = ExtResource("1_hrr58")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0q4by"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ylh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puutc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ourpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0c1sp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg8p8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4thu")
+}],
+"loop": true,
+"name": &"disparar",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knihn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Canon" type="StaticBody2D"]
+script = ExtResource("1_knihn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -4)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_b067o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 4)
+scale = Vector2(2.445, 2)
+sprite_frames = SubResource("SpriteFrames_0q4by")
+animation = &"disparar"
+frame_progress = 0.234507
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-35, -14)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,106 @@
+[gd_scene load_steps=12 format=3 uid="uid://dl4mgt3s4ye3l"]
+
+[ext_resource type="Texture2D" uid="uid://ciljwbh3xvwnl" path="res://1 Buildings/rock_breack.png" id="2_vy07v"]
+[ext_resource type="Texture2D" uid="uid://bwiuc8sa4ngi5" path="res://1 Buildings/Cartoon_Medieval_Field_Work_Level_Set_Environment - Rock 06.png" id="3_r7e38"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f2w8j"]
+
+[sub_resource type="GDScript" id="GDScript_igyy7"]
+script/source = "
+extends RigidBody2D
+
+
+var thrust = Vector2(0, -250)
+var torque = 20000
+var toque = false
+func _physics_process(delta: float) -> void:
+	pass
+
+
+func _on_body_entered(body: Node) -> void:
+	if body is Player:
+
+		if not toque :
+			$\"../player\".life-=1
+			if $\"../player\".life<=0:
+				$\"../player\".get_child(1).play(\"death\")
+			else:
+				$\"../player\".get_child(1).play(\"hurt\")
+			toque=true	
+			$AnimatedSprite2D.play(\"break\")
+	pass 
+
+func _on_animated_sprite_2d_animation_looped() -> void:
+	queue_free()
+	pass # Replace with function body.
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0hf1h"]
+radius = 11.0454
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_togi3"]
+atlas = ExtResource("2_vy07v")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jiuvx"]
+atlas = ExtResource("2_vy07v")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxoet"]
+atlas = ExtResource("2_vy07v")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8q6x"]
+atlas = ExtResource("2_vy07v")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgfs5"]
+atlas = ExtResource("3_r7e38")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jo3gd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_togi3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jiuvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxoet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8q6x")
+}],
+"loop": true,
+"name": &"break",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgfs5")
+}],
+"loop": true,
+"name": &"rodar",
+"speed": 5.0
+}]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_f2w8j")
+contact_monitor = true
+max_contacts_reported = 1
+script = SubResource("GDScript_igyy7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_0hf1h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_jo3gd")
+animation = &"break"
+speed_scale = 1.7
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

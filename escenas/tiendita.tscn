@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://n5nnjooikgd8"]
+
+[ext_resource type="Texture2D" uid="uid://5emww5o2sqhs" path="res://1 Buildings/2.png" id="1_grmgq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpy22"]
+size = Vector2(248.5, 144.75)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="tiendita" type="Sprite2D" parent="."]
+position = Vector2(188, 528)
+scale = Vector2(2.27344, 2.4375)
+texture = ExtResource("1_grmgq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(148.75, 570.625)
+shape = SubResource("RectangleShape2D_kpy22")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5ejviceou8ep"]
+
+[ext_resource type="Texture2D" uid="uid://dvmat85rselk" path="res://1 Buildings/Background.png" id="1_1k0xj"]
+[ext_resource type="PackedScene" uid="uid://ixmke6oempt6" path="res://escenas/suelo.tscn" id="2_prpcy"]
+
+[node name="cuadro2" type="Node2D"]
+
+[node name="Background2" type="Sprite2D" parent="."]
+position = Vector2(575, 322)
+scale = Vector2(2.00261, 1.96913)
+texture = ExtResource("1_1k0xj")
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_prpcy")]
+position = Vector2(568, 596)

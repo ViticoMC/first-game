@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://c45h7u2rqfspq"]
+
+[ext_resource type="Texture2D" uid="uid://de7o0ile86mc1" path="res://1 Buildings/Cannon_restricted_size.png" id="1_jv2ko"]
+[ext_resource type="Script" uid="uid://7cw1tt1lg66b" path="res://escenas/balas.gd" id="1_vyqu6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyqu6"]
+atlas = ExtResource("1_jv2ko")
+region = Rect2(96, 224, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylw7p"]
+atlas = ExtResource("1_jv2ko")
+region = Rect2(96, 256, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7j4h"]
+atlas = ExtResource("1_jv2ko")
+region = Rect2(96, 288, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dtod"]
+atlas = ExtResource("1_jv2ko")
+region = Rect2(96, 320, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpyit"]
+atlas = ExtResource("1_jv2ko")
+region = Rect2(96, 352, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lub3"]
+atlas = ExtResource("1_jv2ko")
+region = Rect2(320, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hsrl6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyqu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylw7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7j4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dtod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpyit")
+}],
+"loop": true,
+"name": &"break",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lub3")
+}],
+"loop": true,
+"name": &"moviendo",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bj27f"]
+radius = 4.12311
+
+[node name="balas" type="RigidBody2D"]
+collision_layer = 2
+contact_monitor = true
+max_contacts_reported = 1
+linear_velocity = Vector2(200, 200)
+script = ExtResource("1_vyqu6")
+
+[node name="animated" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_hsrl6")
+animation = &"moviendo"
+frame_progress = 0.0910345
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bj27f")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_changed" from="animated" to="." method="_on_animated_animation_changed"]
+[connection signal="animation_looped" from="animated" to="." method="_on_animated_animation_looped"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

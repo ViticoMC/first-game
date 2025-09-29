@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://yjfs7gstpbb1"]
+
+[ext_resource type="Texture2D" uid="uid://cx5frwfyrpmuo" path="res://1 Buildings/Cartoon_Medieval_Field_Work_Level_Set_Environment - Rock 01.png" id="2_wqaaf"]
+
+[sub_resource type="GDScript" id="GDScript_igyy7"]
+script/source = "
+extends RigidBody2D
+
+
+var thrust = Vector2(0, -250)
+var torque = 20000
+var toque = false
+func _physics_process(delta: float) -> void:
+	pass
+
+
+func _on_body_entered(body: Node) -> void:
+	if body is Player:
+
+		if not toque :
+			$\"../player\".life-=1
+			if $\"../player\".life<=0:
+				$\"../player\".get_child(1).play(\"death\")
+			else:
+				$\"../player\".get_child(1).play(\"hurt\")
+			toque=true	
+			$AnimatedSprite2D.play(\"break\")
+	pass 
+
+func _on_animated_sprite_2d_animation_looped() -> void:
+	queue_free()
+	pass # Replace with function body.
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0662k"]
+radius = 27.0
+
+[node name="RigidBody2D" type="RigidBody2D"]
+mass = 0.2
+script = SubResource("GDScript_igyy7")
+
+[node name="CartoonMedievalFieldWorkLevelSetEnvironment-Rock01" type="Sprite2D" parent="."]
+position = Vector2(-1, 2)
+scale = Vector2(0.578125, 0.453125)
+texture = ExtResource("2_wqaaf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_0662k")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

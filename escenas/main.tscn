@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://clqn2b0jeqawu"]
+
+[ext_resource type="Script" uid="uid://db6wisu3yxuka" path="res://scripts/main.gd" id="1_68mvh"]
+[ext_resource type="Texture2D" uid="uid://dvmat85rselk" path="res://1 Buildings/Background.png" id="2_lyxkq"]
+[ext_resource type="PackedScene" uid="uid://n5nnjooikgd8" path="res://escenas/tiendita.tscn" id="3_dg7ii"]
+[ext_resource type="PackedScene" uid="uid://bm5u76o1bf6v3" path="res://escenas/Casa.tscn" id="4_woaio"]
+[ext_resource type="PackedScene" uid="uid://ixmke6oempt6" path="res://escenas/suelo.tscn" id="5_7an46"]
+[ext_resource type="PackedScene" uid="uid://cgacj44arbanb" path="res://escenas/molinito.tscn" id="5_lyxkq"]
+[ext_resource type="PackedScene" uid="uid://b22bpmexgs60u" path="res://escenas/player.tscn" id="6_acisx"]
+[ext_resource type="Script" uid="uid://bul5i4cyaasa8" path="res://molinito.gd" id="6_dg7ii"]
+[ext_resource type="Script" uid="uid://cxbn6yp10dfpc" path="res://escenas/camera_2d.gd" id="10_dg7ii"]
+[ext_resource type="PackedScene" uid="uid://0lr4r8iyhmew" path="res://escenas/canon.tscn" id="11_woaio"]
+
+[node name="cuadro_1" type="Node2D"]
+script = ExtResource("1_68mvh")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(577, 321)
+scale = Vector2(1.98785, 1.98148)
+texture = ExtResource("2_lyxkq")
+
+[node name="casa" parent="." instance=ExtResource("3_dg7ii")]
+position = Vector2(-15, -49)
+
+[node name="canon" parent="." instance=ExtResource("11_woaio")]
+position = Vector2(956, 419)
+rotation = 0.458052
+
+[node name="Tienda" parent="." instance=ExtResource("4_woaio")]
+position = Vector2(0, -52)
+scale = Vector2(0.9986, 0.912324)
+
+[node name="molinito" parent="." instance=ExtResource("5_lyxkq")]
+position = Vector2(389, 561)
+scale = Vector2(1.64583, 1.64583)
+script = ExtResource("6_dg7ii")
+
+[node name="suelo" parent="." instance=ExtResource("5_7an46")]
+position = Vector2(568, 593)
+
+[node name="suelo2" parent="." instance=ExtResource("5_7an46")]
+position = Vector2(873, 706)
+
+[node name="player" parent="." instance=ExtResource("6_acisx")]
+position = Vector2(295, 570)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(578, 319)
+rotation = -0.24357
+limit_left = 0
+limit_top = 0
+limit_bottom = 0
+limit_smoothed = true
+script = ExtResource("10_dg7ii")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
