@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d27rqmdoj4ql7"]
+[gd_scene load_steps=9 format=3 uid="uid://d27rqmdoj4ql7"]
 
 [ext_resource type="Script" uid="uid://db6wisu3yxuka" path="res://scripts/main.gd" id="1_484ji"]
 [ext_resource type="Texture2D" uid="uid://dvmat85rselk" path="res://1 Buildings/Background.png" id="2_fmcbn"]
@@ -8,8 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cgacj44arbanb" path="res://escenas/molinito.tscn" id="6_tv524"]
 [ext_resource type="Script" uid="uid://bul5i4cyaasa8" path="res://molinito.gd" id="7_hmwq8"]
 [ext_resource type="PackedScene" uid="uid://ixmke6oempt6" path="res://escenas/suelo.tscn" id="8_omxp6"]
-[ext_resource type="PackedScene" uid="uid://b22bpmexgs60u" path="res://escenas/player.tscn" id="9_uj2ng"]
-[ext_resource type="Script" uid="uid://cxbn6yp10dfpc" path="res://escenas/camera_2d.gd" id="10_8xccy"]
 
 [node name="cuadro_1" type="Node2D"]
 script = ExtResource("1_484ji")
@@ -40,21 +38,3 @@ position = Vector2(568, 593)
 
 [node name="suelo2" parent="." instance=ExtResource("8_omxp6")]
 position = Vector2(1192, 593)
-
-[node name="player" parent="." instance=ExtResource("9_uj2ng")]
-position = Vector2(310, 566)
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(578, 319)
-rotation = -0.24357
-limit_left = 0
-limit_top = 0
-limit_bottom = 0
-limit_smoothed = true
-script = ExtResource("10_8xccy")
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
